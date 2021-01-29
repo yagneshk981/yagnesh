@@ -46,15 +46,16 @@ function draw() {
   
   if(gameState === PLAY){
     
-    if(obstacleGroup.isTouching(monkey)){
+    if(monkey.isTouching(obstacleGroup)){
       gameState = END;
     }
   } 
   
   else if(gameState === END){
-    ground.velocityY = 0;
+    ground.velocityX = 0;
     monkey.velocityX = 0;
-    
+    obstacleGroup.setVelocityXEach(0);
+    FoodGroup.setVelocityEach(0);
   } 
   
   if(keyDown("space")&&monkey.y >= 350){
@@ -64,7 +65,7 @@ function draw() {
   monkey.collide(ground)
   
   
-  ground.velocityX = -7 
+  ground.velocityX = -(7 + 3* score/100) 
  ground.x = ground.width/2;
     
  if(World.frameCount%200===0){
