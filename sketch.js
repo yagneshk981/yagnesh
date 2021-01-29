@@ -1,3 +1,9 @@
+var PLAY = 1;
+var END = 0;
+
+var gameState = PLAY
+
+
 
 var monkey , monkey_running
 var banana ,bananaImage, obstacle, obstacleImage
@@ -37,6 +43,19 @@ function setup() {
   }
 function draw() {
   background("white")
+  
+  if(gameState === PLAY){
+    
+    if(obstacleGroup.isTouching(monkey)){
+      gameState = END;
+    }
+  } 
+  
+  else if(gameState === END){
+    ground.velocityY = 0;
+    monkey.velocityX = 0;
+    
+  } 
   
   if(keyDown("space")&&monkey.y >= 350){
     monkey.velocityY=-10
